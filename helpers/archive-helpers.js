@@ -26,16 +26,51 @@ exports.initialize = function(pathsObj) {
 // modularize your code. Keep it clean!
 
 exports.readListOfUrls = function(callback) {
+  
+  fs.readFile(exports.paths.list, function(err, data) {
+    //var newArray = [];// if (err) { throw err; }
+    console.log('data', data.toString());
+    data = data.toString().split('\n');
+    // newArray.push(data);
+    callback(data);
+  });
 };
 
 exports.isUrlInList = function(url, callback) {
+  // callback = function(err, url) {
+  fs.readFile(exports.paths.list, function (err, data) {
+    // if (data.includes(url)) {
+    //   callback(true);
+    // } else {
+    //   callback(false);
+    // }
+    callback(data.includes(url));
+  });
 };
 
 exports.addUrlToList = function(url, callback) {
+  fs.writeFile(exports.paths.list, url, function(err) {
+    //console.log('url', url);
+    callback(url);
+  });
 };
 
 exports.isUrlArchived = function(url, callback) {
+  fs.readdir(exports.paths.archivedSites, function (err, files) {
+    // if ((files.includes(url))) {
+    //   callback(true);
+    // } else {
+    //   callback(false);
+    // }
+    callback(files.includes(url));
+  });
 };
 
 exports.downloadUrls = function(urls) {
+  // console.log('urls: ', typeof urls);
+  // console.log('urls: ', urls);
+  urls.forEach(function(url) {
+    fs.writeFile(exports.paths.archivedSites + '/' + url, 'something', function(err) {
+    });
+  });
 };
