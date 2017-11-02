@@ -24,6 +24,13 @@ exports.handleRequest = function (req, res) {
     console.log(req.url);
   }
   
+  // if (req.method === '') {
+  //   fs.readFile(archive.paths.archivedSites + '/' + 'www.google.com', function(err, data) {
+  //     if (err) { throw err; }
+  //     console.log('readFile Test: ', data.toString());
+  //   });
+  // }
+  
   // if (req.method === 'GET' && req.url === '/') {
     
   // }
@@ -40,6 +47,10 @@ exports.handleRequest = function (req, res) {
     });
     console.log('hi', req.url);
     
+    fs.writeFile(archive.paths.list, body, function(err) {
+      if (err) { throw err; }
+      console.log('writeFile Test: ', body);
+    });
   }
   
 };
