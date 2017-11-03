@@ -5,4 +5,3 @@ var http = require('http');
 
 helper.readListOfUrls(helper.downloadUrls);
   
-
